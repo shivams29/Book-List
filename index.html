@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Book Registry</title>
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/assets/images/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/assets/images/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/assets/images/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css" />
+        <link rel="stylesheet" href="/assets/css/utilities.css" />
+        <link
+            rel="stylesheet"
+            href="/assets/css/fontAwesome/css/fontawesome.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/css/fontAwesome/css/brands.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/css/fontAwesome/css/regular.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="/assets/css/fontAwesome/css/solid.min.css"
+        />
+    </head>
+    <body data-bs-theme="dark">
+        <main class="container main-container">
+            <section>
+                <div>
+                    <h1 class="display-3 text-center fw-bold mb-5">
+                        <i class="fa fa-book-open text-primary"></i>
+                        My
+                        <span class="text-primary"> Book </span>
+                        List
+                    </h1>
+
+                    <div class="card border-2">
+                        <div class="card-body">
+                            <form id="book-form">
+                                <div class="row g-3">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label
+                                                for="title"
+                                                class="form-label"
+                                                >Title *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="title"
+                                                class="form-control"
+                                                placeholder="Enter book title"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label
+                                                for="author"
+                                                class="form-label"
+                                                >Author *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="author"
+                                                class="form-control"
+                                                placeholder="Add author's name"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="isbn" class="form-label"
+                                                >ISBN *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="isbn"
+                                                class="form-control"
+                                                placeholder="Enter book ISBN number here"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label
+                                                for="description"
+                                                class="form-label"
+                                                >Description</label
+                                            >
+                                            <textarea
+                                                id="description"
+                                                name="description"
+                                                class="form-control"
+                                                placeholder="Add description of book here"
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex mt-4">
+                                    <div class="flex-1">
+                                        <button
+                                            type="button"
+                                            class="btn btn-outline-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#fileUploadModal"
+                                        >
+                                            <i
+                                                class="far fa-file-excel me-1"
+                                            ></i>
+                                            Upload File
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button
+                                            type="reset"
+                                            class="btn btn-outline-danger me-2"
+                                        >
+                                            Clear
+                                        </button>
+                                        <input
+                                            type="submit"
+                                            class="btn btn-primary"
+                                            value="Add Book"
+                                        />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mt-5">
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">S No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Author</th>
+                                <th scope="col">ISBN</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="book-list">
+                            <tr>
+                                <td colspan="5">
+                                    <div
+                                        class="d-flex flex-column align-items-center justify-content-center py-5"
+                                    >
+                                        <img
+                                            src="/assets/images/booksNullState.svg"
+                                            alt="books-image"
+                                            class="w-25"
+                                        />
+                                        <h6 class="mt-5">
+                                            No books added yet!
+                                        </h6>
+                                        <p class="mb-0 text-muted text-center">
+                                            You can upload list of books as a
+                                            CSV file or upload books manually!
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div
+                class="modal fade"
+                tabindex="-1"
+                id="fileUploadModal"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Upload File</h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>File upload work in progress!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                            >
+                                Close
+                            </button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                data-bs-dismiss="modal"
+                            >
+                                Okay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-primary icon-btn btn-lg far fa-moon shadow theme-btn"
+                id="changeTheme"
+            ></button>
+        </main>
+
+        <script
+            type="text/javascript"
+            src="/assets/js/libs/bootstrap.min.js"
+        ></script>
+        <script src="/assets/js/app.js"></script>
+    </body>
+</html>

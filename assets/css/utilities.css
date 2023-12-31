@@ -1,0 +1,22 @@
+.flex-1 {
+    flex: 1;
+}
+
+.icon-btn {
+    padding: 4px;
+    height: 1.75em;
+    width: 1.75em;
+    border-radius: 50%;
+}
+
+.theme-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 2rem;
+}
+
+.main-container {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}

@@ -52,9 +52,18 @@
                         List
                     </h1>
 
+                    <div
+                        id="alert"
+                        class="alert d-none align-items-center"
+                        role="alert"
+                    >
+                        <i class="fa me-2"></i>
+                        <div id="alertText"></div>
+                    </div>
+
                     <div class="card border-2">
                         <div class="card-body">
-                            <form id="book-form">
+                            <form id="bookForm" novalidate>
                                 <div class="row g-3">
                                     <div class="col-12 col-lg-6">
                                         <div class="form-group">
@@ -67,8 +76,13 @@
                                                 type="text"
                                                 id="title"
                                                 class="form-control"
+                                                name="title"
                                                 placeholder="Enter book title"
+                                                required
                                             />
+                                            <div class="invalid-feedback">
+                                                Title is required
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6">
@@ -81,9 +95,14 @@
                                             <input
                                                 type="text"
                                                 id="author"
+                                                name="author"
                                                 class="form-control"
                                                 placeholder="Add author's name"
+                                                required
                                             />
+                                            <div class="invalid-feedback">
+                                                Author is required
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -94,9 +113,15 @@
                                             <input
                                                 type="text"
                                                 id="isbn"
+                                                name="isbn"
                                                 class="form-control"
                                                 placeholder="Enter book ISBN number here"
+                                                required
                                             />
+                                            <div class="invalid-feedback">
+                                                ISBN is required and should be
+                                                unique
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -118,17 +143,15 @@
 
                                 <div class="d-flex mt-4">
                                     <div class="flex-1">
-                                        <button
+                                        <!-- <button
                                             type="button"
                                             class="btn btn-outline-primary"
                                             data-bs-toggle="modal"
                                             data-bs-target="#fileUploadModal"
                                         >
-                                            <i
-                                                class="far fa-file-excel me-1"
-                                            ></i>
+                                            <i class="far fa-file me-1"></i>
                                             Upload File
-                                        </button>
+                                        </button> -->
                                     </div>
                                     <div>
                                         <button
@@ -162,8 +185,8 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody id="book-list">
-                            <tr>
+                        <tbody id="bookList">
+                            <tr id="bookNullState">
                                 <td colspan="5">
                                     <div
                                         class="d-flex flex-column align-items-center justify-content-center py-5"
@@ -229,6 +252,143 @@
                 </div>
             </div>
 
+            <div
+                class="modal modal-lg fade"
+                tabindex="-1"
+                id="editModal"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+            >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Book</h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                        </div>
+                        <form id="editBookForm" novalidate>
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label
+                                                for="title"
+                                                class="form-label"
+                                                >Title *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="title"
+                                                class="form-control"
+                                                name="title"
+                                                placeholder="Enter book title"
+                                                required
+                                            />
+                                            <div class="invalid-feedback">
+                                                Title is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <div class="form-group">
+                                            <label
+                                                for="author"
+                                                class="form-label"
+                                                >Author *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="author"
+                                                name="author"
+                                                class="form-control"
+                                                placeholder="Add author's name"
+                                                required
+                                            />
+                                            <div class="invalid-feedback">
+                                                Author is required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="isbn" class="form-label"
+                                                >ISBN *</label
+                                            >
+                                            <input
+                                                type="text"
+                                                id="isbn"
+                                                name="isbn"
+                                                class="form-control"
+                                                placeholder="Enter book ISBN number here"
+                                                required
+                                            />
+                                            <div class="invalid-feedback">
+                                                ISBN is required and should be
+                                                unique
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label
+                                                for="description"
+                                                class="form-label"
+                                                >Description</label
+                                            >
+                                            <textarea
+                                                id="description"
+                                                name="description"
+                                                class="form-control"
+                                                placeholder="Add description of book here"
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Cancel
+                                </button>
+                                <button class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                        <div id="modalSuccessState" class="d-none">
+                            <div
+                                class="d-flex flex-column align-items-center justify-content-center py-5"
+                            >
+                                <img
+                                    src="/assets/images/success.svg"
+                                    alt="success-image"
+                                    class="w-25"
+                                />
+                                <h6 class="mt-5">Book details updated!</h6>
+                                <div class="text-center">
+                                    <p class="mb-0 text-muted">
+                                        The book details have been updated and
+                                        saved successfully!
+                                    </p>
+                                    <button
+                                        class="btn btn-outline-primary mt-4"
+                                        data-bs-dismiss="modal"
+                                    >
+                                        Okay
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button
                 type="button"
                 class="btn btn-primary icon-btn btn-lg far fa-moon shadow theme-btn"
@@ -240,6 +400,6 @@
             type="text/javascript"
             src="/assets/js/libs/bootstrap.min.js"
         ></script>
-        <script src="/assets/js/app.js"></script>
+        <script type="text/javascript" src="/assets/js/app.js"></script>
     </body>
 </html>

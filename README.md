@@ -1,7 +1,18 @@
-# Book-List
-A simple vanilla Javascript app.
+# Book List 📖
 
-This app allows you to save details of your books on local storage of the browser only so that the details stay there even after refreshing the browser.
+This app allows you to save details of your book list. [View Live App](https://shivams29.github.io/Book-List).
 
-Try this out here - > https://shivams29.github.io/Book-List/books.html
-   
+### Features
+
+-   Beautiful UI 🌈
+-   Browser Persistance 🌐
+-   Easy to use ✅
+-   Styled with Bootstrap 💅
+-   Powered by Vanilla JavaScript ⚡
+-   Hosted on Github :octocat:
+
+### Upcoming Additions
+
+1. Status for read/unread/in-progress for every book. 💯
+2. Populate list using CSV file upload. 📄
+3. Pagination. ◀️▶️

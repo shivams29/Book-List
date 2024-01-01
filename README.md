@@ -5,14 +5,16 @@ This app allows you to save details of your book list. [View Live App](https://s
 ### Features
 
 -   Beautiful UI 🌈
--   Browser Persistance 🌐
+-   Browser Persistence using local storage 🌐
 -   Easy to use ✅
--   Styled with Bootstrap 💅
+-   Styled with [Boostrap 5](https://getbootstrap.com/docs/5.3/) 💅
 -   Powered by Vanilla JavaScript ⚡
--   Hosted on Github :octocat:
+-   Hosted on [GitHub](https://github.com/) :octocat:
+-   Theme Support 🌙☀️
+-   Icons by [Font Awesome](https://fontawesome.com/) ✨
 
 ### Upcoming Additions
 
 1. Status for read/unread/in-progress for every book. 💯
-2. Populate list using CSV file upload. 📄
+2. Populate the list using CSV file upload. 📄
 3. Pagination. ◀️▶️
